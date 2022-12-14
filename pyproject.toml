@@ -31,6 +31,7 @@ dependencies = [
     "psutil",
     "django-storages",
     "boto3",
+    "uvicorn[standard]",
 ]
 
 [build-system]
