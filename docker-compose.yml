@@ -1,0 +1,73 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/home/app/web/
+      - static:/static
+      - media:/media
+      - cache:/cache
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    env_file:
+      - .env.dev
+
+  cache:
+    image: memcached:alpine
+
+
+  celery-beat:
+    build: .
+    command: celery -A core beat --loglevel DEBUG --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - ./.env.dev
+
+  ml_api:
+    build: .
+    command: python manage.py api_server 0.0.0.0 8678
+    volumes:
+      - .:/home/app/web/
+      - cache:/cache
+    ports:
+      - 8080:8080
+    env_file:
+      - .env.dev
+
+  celery:
+    build: .
+    command: celery -A core worker --loglevel DEBUG --concurrency 1
+    env_file:
+      - .env.dev
+    environment:
+      - REDIS_HOST=redis
+    volumes:
+      - .:/home/app/web/
+
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.dev
+
+  redis:
+    image: redis
+    expose:
+      - 6379
+
+  flower:
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    ports:
+      - 5556:5555
+
+volumes:
+  postgres_data:
+  static:
+  media:
+  cache:

@@ -1,0 +1,28 @@
+{% extends "text_classifier/base.html" %}
+{% load i18n static %}
+{% block documenttitle %}
+    {% trans "Correct sample" %}
+{% endblock documenttitle %}
+{% block title %}
+    {% trans "Correct sample" %}
+{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/text_classifier.css' %}" />
+{% endblock styles %}
+{% block content %}
+    <div class="sample">
+        <div class="text">{{ sample.html_text }}</div>
+        <div class="prediction{% if sample.correction and sample.prediction != sample.correction %} corrected{% endif %}">
+            <div class="key">{% trans "Prediction:" %}</div>
+            <div class="value">{{ sample.prediction }}</div>
+            <div class="key">{% trans "Confidence:" %}</div>
+            <div class="value">{{ sample.confidence|floatformat:"-2" }}%</div>
+        </div>
+    </div>
+    <form method="post" class="form">
+        <fieldset class="fields">
+            {{ form }}
+        </fieldset>
+        <button type="submit" class="btn">{% trans "Submit" %}</button>
+    </form>
+{% endblock content %}

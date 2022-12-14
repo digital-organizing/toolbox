@@ -1,0 +1,53 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block documenttitle %}
+            {% endblock documenttitle %}
+            | d/o Toolbox
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+              rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/branding.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block styles %}
+        {% endblock styles %}
+    </head>
+    <body>
+        <header>
+            <a href="https://digitalorganizing.ch/" class="branding">digital/organizing</a>
+            <nav>
+            </nav>
+        </header>
+        <main>
+            <h2>
+                {% block title %}
+                {% endblock title %}
+            </h2>
+            {% block content %}
+            {% endblock content %}
+        </main>
+        <footer>
+            {% block footer %}
+                <nav class="legal">
+                    <a href="https://digitalorganizing.ch/datenschutz">{% trans "Privacy" %}</a>
+                    <a href="https://digitalorganizing.ch/impressum">{% trans "Imprint" %}</a>
+                </nav>
+                <nav class="social">
+                    <a href="https://www.linkedin.com/company/digitalorganizing"><i class="ri-linkedin-fill"></i></a>
+                    <a href="https://instagram.com/digitalorganizing/"><i class="ri-instagram-fill"></i></a>
+                    <a href="mailto:hallo@digitalorganizing.ch"><i class="ri-mail-send-fill"></i></a>
+                </nav>
+                <section class="copyright">
+                    © {% now 'Y' %}
+                </section>
+            {% endblock footer %}
+        </footer>
+        {% block scripts %}
+        {% endblock scripts %}
+    </body>
+</html>

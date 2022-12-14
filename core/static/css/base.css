@@ -1,0 +1,89 @@
+body {
+  font-size: 16px;
+  font-family: var(--text-font);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--dark-color);
+  padding: 0.5em 0.8em;
+}
+
+header .branding {
+  color: var(--light-color);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+main {
+  min-height: 90vh;
+  width: min(1200px, calc(100% - 1.2em));
+  align-self: center;
+}
+
+footer {
+  background: var(--dark-color);
+  color: var(--light-color);
+}
+
+footer a {
+  color: #9F9FA6;
+  text-decoration: none;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3em;
+  padding-bottom: 1em;
+  gap: 0.6em;
+}
+
+footer nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+
+.copyright {
+  font-size: 0.8em;
+}
+
+fieldset.fields {
+  border: none;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin: 0;
+  margin-bottom: 0.3em;
+  padding: 0;
+  row-gap: 0.3em;
+}
+
+.key,
+.fields>label {
+  font-weight: 700;
+}
+
+.btn {
+  border: none;
+  background-color: var(--highlight-color);
+  color: var(--dark-color);
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 0.6em 1.3em;
+  letter-spacing: 0.04em;
+}
+
+.btn.sm {
+  padding: 0.3em 0.6em;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+}

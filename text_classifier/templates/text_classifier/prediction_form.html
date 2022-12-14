@@ -1,0 +1,32 @@
+{% extends "text_classifier/base.html" %}
+{% load i18n static %}
+{% block documenttitle %}
+    {% trans "Classify text" %}
+{% endblock documenttitle %}
+{% block title %}
+    {% trans "Classify text" %}
+{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/text_classifier.css' %}" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"/>
+{% endblock styles %}
+{% block content %}
+    <form method="post" class="form predict" enctype="multipart/form-data">
+        <fieldset class="fields">
+            {{ form }}
+        </fieldset>
+        <div class="add-row">
+            <button type="button" id="add-row" class="btn sm">+</button>
+        </div>
+        <button type="submit" class="btn">{% trans "Submit" %}</button>
+    </form>
+    <pre>
+    <code class="answer language-json"></code>
+    </pre>
+{% endblock content %}
+{% block scripts %}
+    <script src="{% static 'js/predict_text.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/json.min.js"></script>
+{% endblock scripts %}

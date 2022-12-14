@@ -1,0 +1,72 @@
+[project]
+name = "do-toolbox"
+version = "0.0.1"
+dependencies = [
+    "django",
+    "async_lru",
+    "djangorestframework",
+    "django-celery-beat",
+    "django-celery-results",
+    "psycopg2-binary",
+    "gunicorn",
+    "whitenoise[brotli]",
+    "django-environ",
+    "pymemcache",
+    "django-import-export",
+    "django-sesame[ua]",
+    "celery[redis]",
+    "sentence-transformers",
+    "django-stubs-ext",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "nltk",
+    "joblib",
+    "numba",
+    "django-model-utils",
+    "sentry-sdk",
+    "django-jsonform",
+    "fintech",
+    "openai",
+    "psutil",
+    "django-storages",
+    "boto3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.optional-dependencies]
+dev = ["pytest", "toml", "django-stubs-ext", "django-stubs", "mypy", "yapf", "isort", "bandit", "djangorestframework-stubs", "types-cryptography"]
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+python_version = 3.10
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+
+[tool.django-stubs]
+django_settings_module = "core.settings"
+
+
+[tool.flake8]
+max-line-length = 100
+exclude = ".tox,.git,*/migrations/*,*/static/CACHE/*,docs,node_modules,venv"
+
+[tool.yapf]
+based_on_style = "pep8"
+column_limit = 100
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+
+
+[tool.pycodestyle]
+max-line-length = 120
+exclude = ".tox,.git,*/migrations/*,*/static/CACHE/*,docs,node_modules,venv"
+
