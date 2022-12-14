@@ -1,5 +1,7 @@
 import uuid
+from django.utils.safestring import mark_safe
 from datetime import datetime
+from sklearn.utils import estimator_html_repr
 
 import joblib
 from django.contrib.auth import get_user_model
@@ -73,6 +75,10 @@ class Classifier(TimeStampedModel):
 
     def load_model(self):
         return joblib.load(self.stored)
+
+    def model_html(self):
+        model = self.load_model()
+        return mark_safe(estimator_html_repr(model))
 
     def __str__(self) -> str:
         return f'Classifier: {self.model.name}'

@@ -57,6 +57,18 @@ class TrainingSampleAdmin(ImportExportModelAdmin):
 class ClassifierAdmin(admin.ModelAdmin):
     list_display = ['created', 'model', 'is_active']
 
+    fields = [
+        'model',
+        'sentence_model',
+        'is_active',
+        'training',
+        'trained_at',
+        'score',
+        'model_html',
+    ]
+
+    readonly_fields = ['model_html', 'trained_at']
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

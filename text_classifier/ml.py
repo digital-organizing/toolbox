@@ -31,8 +31,8 @@ CLASSIFIERS = {
         'classifier': [KNeighborsClassifier()]
     },
     'MLPClassifier': {
-        'classifier': [MLPClassifier(random_state=RANDOM_SEED)],
-        'classifier__activation': ['identity', 'logistic', 'reul'],
+        'classifier': [MLPClassifier(random_state=RANDOM_SEED, max_iter=1000)],
+        'classifier__activation': ['identity', 'logistic', 'relu'],
         'classifier__alpha': [0, 0.0001, 0.01],
         'classifier__learning_rate': ['constant', 'adaptive'],
     },
