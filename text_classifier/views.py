@@ -27,7 +27,10 @@ async def process_text(request: HttpRequest, model_pk):
     model = await sync_to_async(check_auth_or_header)(request, model_pk)
 
     if request.method == 'GET':
-        return render(request, 'text_classifier/prediction_form.html', {'form': PredictForm()})
+        return render(request, 'text_classifier/prediction_form.html', {
+            'form': PredictForm(),
+            'model': model
+        })
 
     classifier: Classifier = await model.classifier_set.filter(is_active=True).aget()
 

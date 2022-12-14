@@ -4,7 +4,7 @@
     {% trans "Classify text" %}
 {% endblock documenttitle %}
 {% block title %}
-    {% trans "Classify text" %}
+    {% trans "Classify text" %} - {{ model.name }}
 {% endblock title %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/text_classifier.css' %}" />
