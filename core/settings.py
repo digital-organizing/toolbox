@@ -42,6 +42,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 # Application definition
 
 INSTALLED_APPS = [
+    'text_classifier',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,7 +59,6 @@ INSTALLED_APPS = [
     'ml_api',
     'payments',
     'teams',
-    'text_classifier',
 ]
 
 MIDDLEWARE = [
