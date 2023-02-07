@@ -1,0 +1,12 @@
+{% extends 'text_classifier/base.html' %}
+
+{% block documenttitle %}{{task.name}} | Task {% endblock %}
+
+{% block title %}{{task.name}} - Resultat{% endblock %}
+
+{% block content %}
+
+<textarea>
+  {{completion}}
+</textarea>
+{% endblock content %}

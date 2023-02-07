@@ -30,7 +30,7 @@ footer {
 }
 
 footer a {
-  color: #9F9FA6;
+  color: #9f9fa6;
   text-decoration: none;
 }
 
@@ -65,7 +65,7 @@ fieldset.fields {
 }
 
 .key,
-.fields>label {
+.fields > label {
   font-weight: 700;
 }
 
@@ -86,4 +86,13 @@ fieldset.fields {
 
 .btn:hover {
   filter: brightness(0.95);
+}
+
+textarea {
+  width: 100%;
+  height: 30em;
+}
+
+form {
+  margin-bottom: 1em;
 }
