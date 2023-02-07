@@ -34,6 +34,9 @@ class TextField(models.Model):
     name = models.CharField(max_length=120)
     required = models.BooleanField()
 
+    area = models.BooleanField(default=False)
+    default = models.CharField(max_length=500, blank=True)
+
     def __str__(self) -> str:
         return self.name
 

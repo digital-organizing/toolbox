@@ -12,10 +12,18 @@ class TaskTemplateForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         for text_field in self.task.texts.all():
-            self.fields[text_field.slug] = forms.CharField(
-                label=text_field.name,
-                required=text_field.required,
-            )
+            args = {
+                'label': text_field.name,
+                'required': text_field.required,
+            }
+
+            if text_field.area:
+                args['widget'] = forms.Textarea()
+
+            if text_field.default:
+                args['initial'] = text_field.default
+
+            self.fields[text_field.slug] = forms.CharField(**args)
 
         for url_field in self.task.urls.all():
             self.fields[url_field.slug] = forms.URLField(
