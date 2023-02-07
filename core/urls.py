@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 from django.urls import include, path
 
@@ -21,6 +22,7 @@ admin.site.site_header = 'digital/organizing Tools'
 
 urlpatterns = [
     path('', lambda request: redirect('https://digitalorganizing.ch/')),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
     path('text-classifier/', include('text_classifier.urls')),
     path('text-tools/', include('text_tools.urls')),

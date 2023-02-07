@@ -11,6 +11,13 @@ from text_tools.models import TaskTemplate
 from text_tools.services import count_tokens, extract_url
 
 
+@login_required
+def list_tasks(request: HttpRequest) -> HttpResponse:
+    tasks = TaskTemplate.objects.all()
+
+    return render(request, 'text_tools/task_list.html', {'tasks': tasks})
+
+
 def get_form(data=None, task=None):
     return TaskTemplateForm(data, task=task)
 
