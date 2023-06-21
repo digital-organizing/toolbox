@@ -17,6 +17,8 @@ class UrlFieldInline(admin.TabularInline):
 
 @admin.register(TaskTemplate)
 class TemplateAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'model']
+    list_display = ["name", "slug", "model"]
 
     inlines = [TextFieldInline, UrlFieldInline]
+
+    filter_horizontal = ["users"]

@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && \
   apt-get install -y \
-    netcat gettext
+  netcat-traditional gettext
 
 # install dependencies
 RUN pip install --no-cache --upgrade pip

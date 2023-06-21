@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
@@ -10,7 +11,7 @@ class TaskTemplate(models.Model):
     template = models.TextField()
     suffix_template = models.TextField(blank=True)
 
-    model = models.CharField(max_length=200, default='text-davinci-003')
+    model = models.CharField(max_length=200, default="text-davinci-003")
     model_max_tokens = models.IntegerField(default=4096)
 
     max_tokens = models.IntegerField(default=720)
@@ -21,8 +22,10 @@ class TaskTemplate(models.Model):
     openai_key = models.CharField(max_length=200)
     openai_org = models.CharField(max_length=200, blank=True)
 
-    texts: models.QuerySet['TextField']
-    urls: models.QuerySet['UrlField']
+    texts: models.QuerySet["TextField"]
+    urls: models.QuerySet["UrlField"]
+
+    users = models.ManyToManyField(get_user_model(), blank=True)
 
     def __str__(self) -> str:
         return self.name
@@ -46,7 +49,9 @@ class UrlField(models.Model):
     task = models.ForeignKey(TaskTemplate, models.CASCADE, related_name="urls")
     name = models.CharField(max_length=120)
 
-    xpath = models.CharField(max_length=320, default='/html/body//*[self::p | self::h1 | self::h2]')
+    xpath = models.CharField(
+        max_length=320, default="/html/body//*[self::p | self::h1 | self::h2]"
+    )
     min_length = models.IntegerField(default=50)
 
     required = models.BooleanField()
